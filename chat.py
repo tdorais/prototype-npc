@@ -1,20 +1,17 @@
 """Begins the conversation with Ship."""
-from pathlib import Path
 import json
+import os
+from bin import player
 
 def load_messages():
     """Loads messages"""
     messages = json.load(open("lib/messages.json"))
     return messages
 
-def load_player():
-    """Loads player data."""
-    player_file = Path("sav/player.json")
+def cls():os.system('cls' if os.name=='nt' else 'clear')
 
-    if not player_file.is_file():
-        name = input("Hello, I am Ship. How may I refer to you?\n")
-
-    print("Good Morning, " + name)
-    return
-
-load_player()
+cls()
+you = player.Player()
+cls()
+print(you.get_greeting())
+you.save()
